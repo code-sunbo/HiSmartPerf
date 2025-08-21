@@ -46,12 +46,21 @@ jobs:
           unzip
           base-devel
     
-    - name: build
-      shell: ${{ matrix.item.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
+    - name: build Windows
+      if: matrix.item.os == 'windows-latest'
+      shell: msys2 {0}
       run: |
         chmod +x smartperf_host/trace_streamer/*.sh
         chmod +x smartperf_host/trace_streamer/build/*.sh
         bash smartperf_host/trace_streamer/build.sh ${{ matrix.item.target }}
+      
+    - name: build Linux/Mac
+      if: matrix.item.os != 'windows-latest'
+      shell: bash
+      run: |
+        chmod +x smartperf_host/trace_streamer/*.sh
+        chmod +x smartperf_host/trace_streamer/build/*.sh
+        smartperf_host/trace_streamer/build.sh ${{ matrix.item.target }}
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
