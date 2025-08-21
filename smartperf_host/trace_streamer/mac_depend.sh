@@ -16,6 +16,6 @@ cd out/macx
 if [ ! -d "lib" ];then
     echo "cp macx depend"
     mkdir lib
-    find /usr -name 'libc+*.dylib' -exec cp {} lib \;
+    find /usr/lib -name 'libc+*.dylib' -exec cp {} lib \;
 fi
 install_name_tool -change /usr/lib/libc++.1.dylib ./lib/libc++.1.dylib trace_streamer
