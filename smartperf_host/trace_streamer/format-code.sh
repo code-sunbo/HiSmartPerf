@@ -20,6 +20,7 @@ case "$OSTYPE" in
   linux*)   target_os="linux"  ;;
   bsd*)     echo "is bsd os" ;;
   msys*)    target_os="windows" gn="gn.exe" ;;
+  cygw*)    target_os="windows" gn="gn.exe" ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
 PRJ_ROOT_DIR=$(readlink -f -- "$(dirname $0)/")

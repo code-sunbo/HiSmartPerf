@@ -70,6 +70,7 @@ function choose_os_type() {
         linux*)   gn_path="linux" target_os="linux"  ;;
         bsd*)     echo "is bsd os" ;;
         msys*)    gn_path="windows" target_os="windows" gn="gn.exe" ninja="ninja.exe"  ;;
+        cygw*)    gn_path="windows" target_os="windows" gn="gn.exe" ninja="ninja.exe"  ;;
         *)        echo "unknown: $OSTYPE" ;;
     esac
 }
