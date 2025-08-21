@@ -1,0 +1,47 @@
+name: Build Executables
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build on ${{ matrix.item.os }}
+    runs-on: ${{ matrix.item.os }}
+    strategy:
+      matrix:
+        item:
+          # Linux - 使用静态 Python
+          - os: ubuntu-22.04
+            arch: x64
+            platform: linux
+            target: linux
+            
+          # Windows
+          - os: windows-latest
+            arch: x64
+            platform: win32
+            target: windows
+            
+          # macOS - ARM (Apple Silicon)
+          - os: macos-14
+            arch: arm64
+            platform: darwin
+            target: macx
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: build
+      run: |
+        chmod +x smartperf_host/trace_streamer/*.sh
+        chmod +x smartperf_host/trace_streamer/build/*.sh
+        smartperf_host/trace_streamer/build.sh ${{ matrix.item.target }}
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: trace_streamer-${{ matrix.item.platform }}-${{ matrix.item.arch }}
+        path: smartperf_host/trace_streamer/out/${{ matrix.item.target }}/trace_streamer*
