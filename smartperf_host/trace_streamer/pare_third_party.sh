@@ -29,7 +29,7 @@ fi
 cd third_party
 
 if [ ! -f "sqlite/BUILD.gn" ];then
-    git clone git@gitee.com:openharmony/third_party_sqlite.git sqlite
+    git clone https://gitee.com/openharmony/third_party_sqlite.git sqlite
     cd sqlite
     git reset --hard d21e412dbc6f2cdde2e4c9828e2450fcfca4fbe9
     cd ..
