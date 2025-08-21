@@ -1,3 +1,35 @@
+diff --git a/common/dfxutil/smart_fd.h b/common/dfxutil/smart_fd.h
+index 6eb414a..edd4c91 100644
+--- a/common/dfxutil/smart_fd.h
++++ b/common/dfxutil/smart_fd.h
+@@ -27,11 +27,11 @@ public:
+     SmartFd() = default;
+     explicit SmartFd(int fd, bool fdsan = true) : fd_(fd), fdsan_(fdsan)
+     {
+-#ifndef is_host
++#if is_ohos
+         if (fd_ >= 0 && fdsan_) {
+             fdsan_exchange_owner_tag(fd_, 0, fdsan_create_owner_tag(FDSAN_OWNER_TYPE_FILE, DFX_FDSAN_DOMAIN));
+         }
+-#endif // is_host
++#endif
+     }
+
+     ~SmartFd()
+@@ -86,12 +86,12 @@ private:
+         if (fd_ < 0) {
+             return;
+         }
+-#ifndef is_host
++#if is_ohos
+         if (fdsan_) {
+             fdsan_close_with_tag(fd_, fdsan_create_owner_tag(FDSAN_OWNER_TYPE_FILE, DFX_FDSAN_DOMAIN));
+             return;
+         }
+-#endif // is_host
++#endif
+         close(fd_);
+     }
 diff --git a/common/dfxutil/string_view_util.h b/common/dfxutil/string_view_util.h
 index b44a59e..7dbd356 100644
 --- a/common/dfxutil/string_view_util.h
