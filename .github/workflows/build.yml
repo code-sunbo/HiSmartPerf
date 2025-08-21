@@ -40,8 +40,6 @@ jobs:
       with:
         update: true
         install: |
-          mingw-w64-x86_64-gcc
-          mingw-w64-x86_64-make
           git
           unzip
           base-devel
@@ -52,7 +50,7 @@ jobs:
       run: |
         chmod +x smartperf_host/trace_streamer/*.sh
         chmod +x smartperf_host/trace_streamer/build/*.sh
-        bash smartperf_host/trace_streamer/build.sh ${{ matrix.item.target }}
+        smartperf_host/trace_streamer/build.sh ${{ matrix.item.target }}
       
     - name: build Linux/Mac
       if: matrix.item.os != 'windows-latest'

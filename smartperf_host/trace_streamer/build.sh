@@ -22,6 +22,8 @@ set_enable_extend_plugin_array "false"
 set_enable_macro_switch_array "false"
 ./pare_third_party.sh
 choose_os_type
+echo "$gn_path"
+env
 ./dl_tools.sh $gn_path
 while [[ $# -gt 0 ]]; do
     case "$1" in
