@@ -36,34 +36,34 @@ if [ ! -f "sqlite/BUILD.gn" ];then
 fi
 
 if [ ! -f "protobuf/BUILD.gn" ];then
-    git clone git@gitee.com:openharmony/third_party_protobuf.git protobuf
+    git clone https://gitee.com/openharmony/third_party_protobuf.git protobuf
     cd protobuf
     git reset --hard aceafed4cf26d7a6be8169ae887cc13b749d5515
     cd ..
 fi
 
 if [ ! -f "zlib/BUILD.gn" ];then
-    git clone --depth=1 git@gitee.com:openharmony/third_party_zlib.git zlib
+    git clone --depth=1 https://gitee.com/openharmony/third_party_zlib.git zlib
 fi
 
 if [ ! -f "bzip2/BUILD.gn" ];then
-    git clone --depth=1 git@gitee.com:openharmony/third_party_bzip2.git bzip2
+    git clone --depth=1 https://gitee.com/openharmony/third_party_bzip2.git bzip2
 fi
 
 if [ ! -f "googletest/BUILD.gn" ];then
-    git clone --depth=1 git@gitee.com:openharmony/third_party_googletest.git googletest
+    git clone --depth=1 https://gitee.com/openharmony/third_party_googletest.git googletest
 fi
 
 if [ ! -d "json" ];then
-    git clone --depth=1 git@gitee.com:openharmony/third_party_json.git json
+    git clone --depth=1 https://gitee.com/openharmony/third_party_json.git json
 fi
 
 if [ ! -d "libbpf" ];then
-    git clone --depth=1 git@gitee.com:openharmony/third_party_libbpf.git libbpf
+    git clone --depth=1 https://gitee.com/openharmony/third_party_libbpf.git libbpf
 fi
 
 if [ ! -d "hiviewdfx/faultloggerd" ];then
-   git clone --depth=1 git@gitee.com:openharmony/hiviewdfx_faultloggerd.git hiviewdfx/faultloggerd/
+   git clone --depth=1 https://gitee.com/openharmony/hiviewdfx_faultloggerd.git hiviewdfx/faultloggerd/
    cd hiviewdfx/faultloggerd
    perl -pi -e 's/\r$//' interfaces/innerkits/unwinder/src/elf/dfx_elf.cpp
    $patch -p1  < ../../../prebuilts/patch_hiperf/hiviewdfx_faultloggerd.patch
@@ -71,19 +71,19 @@ if [ ! -d "hiviewdfx/faultloggerd" ];then
 fi
 
 if [ ! -f "hiperf/BUILD.gn" ];then
-    git clone --depth=1 git@gitee.com:openharmony/developtools_hiperf.git hiperf
+    git clone --depth=1 https://gitee.com/openharmony/developtools_hiperf.git hiperf
 fi
 
 if [ ! -f "bounds_checking_function/BUILD.gn" ];then
-    git clone --depth=1 git@gitee.com:openharmony/third_party_bounds_checking_function.git bounds_checking_function
+    git clone --depth=1 https://gitee.com/openharmony/third_party_bounds_checking_function.git bounds_checking_function
 fi
 
 if [ ! -d "commonlibrary/c_utils" ];then
-    git clone --depth=1 git@gitee.com:openharmony/commonlibrary_c_utils.git commonlibrary/c_utils
+    git clone --depth=1 https://gitee.com/openharmony/commonlibrary_c_utils.git commonlibrary/c_utils
 fi
 
 if [ ! -d "profiler" ];then
-    git clone --depth=1 git@gitee.com:openharmony/developtools_profiler.git profiler
+    git clone --depth=1 https://gitee.com/openharmony/developtools_profiler.git profiler
 fi
 
 if [ ! -d "llvm-project" ];then
