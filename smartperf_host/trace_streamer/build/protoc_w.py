@@ -32,7 +32,7 @@ SUBSYS_X64_OUT = os.path.join(PROJECT_TOP, sys.argv[2], TAIL_DIR)
 PROTOC_NAME = "protoc"
 PROTOCREADER_PLUGIN = "protoreader_plugin"
 current_os = platform.system()
-if current_os == "Windows":
+if current_os == "Windows" or current_os.find('win') != -1 or current_os.find('MINGW') != -1:
     PROTOC_NAME = "protoc.exe"
     PROTOCREADER_PLUGIN = "protoreader_plugin.exe"
 PROTOC = os.path.join(PROJECT_TOP, sys.argv[2], TAIL_DIR, PROTOC_NAME)

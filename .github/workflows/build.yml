@@ -46,6 +46,7 @@ jobs:
           unzip
           patch
           base-devel
+          python
     
     - name: build Windows
       if: matrix.item.os == 'windows-latest'

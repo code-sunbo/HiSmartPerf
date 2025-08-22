@@ -20,6 +20,7 @@
 #include <deque>
 #include <functional>
 #include <vector>
+#include <algorithm>
 #include "sqlite3.h"
 #include "ts_common.h"
 

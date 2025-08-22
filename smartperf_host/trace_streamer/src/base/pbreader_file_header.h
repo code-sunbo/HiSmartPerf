@@ -14,6 +14,7 @@
  */
 #ifndef PBREADER_FILE_HEADER_H
 #define PBREADER_FILE_HEADER_H
+#include <cstdint>
 namespace SysTuning {
 namespace TraceStreamer {
 struct ProfilerTraceFileHeader {

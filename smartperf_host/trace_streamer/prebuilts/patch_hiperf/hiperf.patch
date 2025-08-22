@@ -1,0 +1,56 @@
+diff --git a/include/command_reporter.h b/include/command_reporter.h
+index d548eef..53d6e10 100644
+--- a/include/command_reporter.h
++++ b/include/command_reporter.h
+@@ -14,7 +14,7 @@
+  */
+ #ifndef COMMAND_REPORTER_H_
+ #define COMMAND_REPORTER_H_
+-
++#include <cstdint>
+ #include <string>
+ namespace OHOS::Developtools::HiPerf {
+ 
+@@ -55,7 +55,7 @@ namespace OHOS::Developtools::HiPerf {
+ 
+ #define FOR_ERROR_ENUM(x) x
+ 
+-enum class HiperfError : int32_t {
++enum HiperfError : int32_t {
+     MAKE_ERROR_ITEM(FOR_ERROR_ENUM)
+ };
+ 
+diff --git a/src/utilities.cpp b/src/utilities.cpp
+index b5e8e65..8ddcb5f 100644
+--- a/src/utilities.cpp
++++ b/src/utilities.cpp
+@@ -14,8 +14,10 @@
+  */
+ 
+ #include "utilities.h"
+-
++#if defined(_WIN32)
++#else
+ #include <sys/utsname.h>
++#endif
+ #include <zlib.h>
+ #include <thread>
+ #if defined(CONFIG_HAS_SYSPARA) && defined(is_ohos) && is_ohos
+@@ -836,6 +838,9 @@ bool IsBeta()
+ 
+ bool IsHM()
+ {
++#if defined(_WIN32)
++    return false;
++#else
+     utsname unameBuf;
+     bool isHM = false;
+     if ((uname(&unameBuf)) == 0) {
+@@ -843,6 +848,7 @@ bool IsHM()
+         isHM = osrelease.find(HMKERNEL) != std::string::npos;
+     }
+     return isHM;
++#endif
+ }
+ 
+ bool IsAllowProfilingUid()

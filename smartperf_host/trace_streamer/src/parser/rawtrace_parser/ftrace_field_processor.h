@@ -16,6 +16,7 @@
 #define FTRACE_FIELD_PROCESSOR_H
 #include <string>
 #include <vector>
+#include <cstdint>
 #include "ftrace_common_type.h"
 #include "log.h"
 

@@ -18,6 +18,7 @@
 #include <regex>
 #include <string>
 #include <vector>
+#include <cstdint>
 #include "cpu_detail_parser.h"
 #include "ftrace_common_type.h"
 #include "ftrace_event_processor.h"

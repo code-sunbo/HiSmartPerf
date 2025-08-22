@@ -17,6 +17,7 @@
 #define INCLUDE_TUNING_BASE_CODEC_COV_H
 
 #include <string>
+#include <cstdint>
 
 namespace SysTuning {
 namespace base {

@@ -18,6 +18,7 @@
 
 #include <string>
 #include <vector>
+#include <cstdint>
 #include "sqlite3.h"
 
 namespace SysTuning {
