@@ -63,9 +63,10 @@ jobs:
         chmod +x smartperf_host/trace_streamer/*.sh
         chmod +x smartperf_host/trace_streamer/build/*.sh
         smartperf_host/trace_streamer/build.sh ${{ matrix.item.target }}
+        ls smartperf_host/trace_streamer/out/${{ matrix.item.target }}/lib
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: trace_streamer-${{ matrix.item.platform }}-${{ matrix.item.arch }}
-        path: smartperf_host/trace_streamer/out/${{ matrix.item.target }}/trace_streamer*
+        path: smartperf_host/trace_streamer/out/${{ matrix.item.target }}/trace_streamer* smartperf_host/trace_streamer/out/${{ matrix.item.target }}/lib
