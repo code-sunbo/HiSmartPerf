@@ -40,15 +40,17 @@ jobs:
       with:
         update: true
         install: |
+          mingw-w64-x86_64-make
+          mingw-w64-x86_64-gcc
           git
           unzip
+          patch
           base-devel
     
     - name: build Windows
       if: matrix.item.os == 'windows-latest'
       shell: msys2 {0}
       run: |
-        echo "OSTYPE=msys" >> $GITHUB_ENV
         chmod +x smartperf_host/trace_streamer/*.sh
         chmod +x smartperf_host/trace_streamer/build/*.sh
         smartperf_host/trace_streamer/build.sh ${{ matrix.item.target }}
