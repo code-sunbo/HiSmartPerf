@@ -64,10 +64,19 @@ jobs:
         chmod +x smartperf_host/trace_streamer/build/*.sh
         smartperf_host/trace_streamer/build.sh ${{ matrix.item.target }}
 
-    - name: Upload artifact
+    - name: Upload artifact Mac
+      if: matrix.item.platform == 'darwin'
       uses: actions/upload-artifact@v4
       with:
         name: trace_streamer-${{ matrix.item.platform }}-${{ matrix.item.arch }}
         path: |
           smartperf_host/trace_streamer/out/${{ matrix.item.target }}/trace_streamer* 
-          ${{ matrix.item.platform == 'darwin' && 'smartperf_host/trace_streamer/out/${{ matrix.item.target }}/lib' || '' }}
+          smartperf_host/trace_streamer/out/${{ matrix.item.target }}/lib/*
+    
+    - name: Upload artifact Mac
+      if: matrix.item.platform != 'darwin'
+      uses: actions/upload-artifact@v4
+      with:
+        name: trace_streamer-${{ matrix.item.platform }}-${{ matrix.item.arch }}
+        path: |
+          smartperf_host/trace_streamer/out/${{ matrix.item.target }}/trace_streamer*
