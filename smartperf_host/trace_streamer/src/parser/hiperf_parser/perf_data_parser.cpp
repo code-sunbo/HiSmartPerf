@@ -28,7 +28,6 @@
 #include <string>
 
 std::string generate_temp_filename() {
-    std::string base_dir = std::filesystem::temp_directory_path().string();
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, 35);
@@ -38,7 +37,7 @@ std::string generate_temp_filename() {
     for (int i = 0; i < 10; ++i) {
         filename += chars[dis(gen)];
     }
-    return (std::filesystem::path(base_dir) / filename).string();
+    return filename;
 }
 
 namespace SysTuning {
@@ -55,6 +54,7 @@ PerfDataParser::PerfDataParser(TraceDataCache *dataCache, const TraceStreamerFil
 {
     SymbolsFile::onRecording_ = false;
     tmpPerfData_ = generate_temp_filename();
+    TS_LOGI("tmpPerfData_ %s", tmpPerfData_.c_str());
 }
 uint64_t PerfDataParser::InitPerfDataAndLoad(const std::deque<uint8_t> &dequeBuffer,
                                              uint64_t size,
